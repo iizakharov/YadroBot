@@ -21,6 +21,16 @@ def create_table_bday():
                    name varchar(500) NOT NULL, b_date TEXT NOT NULL)""")
 
 
+@log
+def new_member(name, date):
+    # Вставляем данные в таблицу
+    cursor.execute(f"INSERT INTO bday (name, b_date) \
+                          VALUES ('{name}', '{date}')"
+                   )
+    conn.commit()
+
+
+@log
 def get_bdate():
     arr = []
     days_to = 365
@@ -48,7 +58,6 @@ def get_bdate():
     res = [result, days_to, near_date]
     return res
 
-get_bdate()
 
 @log
 def add_joke(joke):
